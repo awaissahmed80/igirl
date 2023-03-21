@@ -35,6 +35,11 @@
 			</dict>
 		</dict>
 	</dict>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Voice permissions required</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Mic Permissions required to use iGirl</string>
+
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>

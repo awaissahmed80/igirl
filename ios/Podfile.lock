@@ -329,8 +329,12 @@ PODS:
   - React-jsinspector (0.71.3)
   - React-logger (0.71.3):
     - glog
+  - react-native-dialogflow (3.2.2):
+    - React
   - react-native-pager-view (6.1.4):
     - React-Core
+  - react-native-voice (0.3.0):
+    - React
   - React-perflogger (0.71.3)
   - React-RCTActionSheet (0.71.3):
     - React-Core/RCTActionSheetHeaders (= 0.71.3)
@@ -468,7 +472,9 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-dialogflow (from `../node_modules/react-native-dialogflow`)
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
+  - react-native-voice (from `../node_modules/react-native-voice`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -544,8 +550,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-dialogflow:
+    :path: "../node_modules/react-native-dialogflow"
   react-native-pager-view:
     :path: "../node_modules/react-native-pager-view"
+  react-native-voice:
+    :path: "../node_modules/react-native-voice"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -611,7 +621,9 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 515b703d23ffadeac7687bc2d12fb08b90f0aaa1
   React-jsinspector: 9f7c9137605e72ca0343db4cea88006cb94856dd
   React-logger: 957e5dc96d9dbffc6e0f15e0ee4d2b42829ff207
+  react-native-dialogflow: 786714700b825b342c9db519efa0b467aee1cded
   react-native-pager-view: b58cb9e9f42f64e50cab3040815772c1d119a2e2
+  react-native-voice: 9829ac5dc9300687c5f215bddf6c9645e82923fc
   React-perflogger: af8a3d31546077f42d729b949925cc4549f14def
   React-RCTActionSheet: 57cc5adfefbaaf0aae2cf7e10bccd746f2903673
   React-RCTAnimation: 11c61e94da700c4dc915cf134513764d87fc5e2b
