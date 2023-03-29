@@ -1,8 +1,14 @@
 import React, { useState, useEffect, useReducer } from 'react'
 import { View, Text, TextInput, Alert, KeyboardAvoidingView, ImageBackground, Image,  Platform, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native'
+import { AppOpenAd, TestIds, AdEventType } from 'react-native-google-mobile-ads';
 import { styles } from './styles'
 import { assets } from '../assets'
 import { Dialogflow_V2 } from 'react-native-dialogflow'
+
+const appOpenAd = AppOpenAd.createForAdRequest(TestIds.APP_OPEN, {
+    requestNonPersonalizedAdsOnly: true,
+    keywords: ['fashion', 'clothing', 'love'],
+  });
 
 const dialogFlowConfig = {
     "type": "service_account",
@@ -22,6 +28,7 @@ export const Chat = ({goNext, goBack}) => {
     const interests = [
         'Insagram', 'Astrology', 'Fishing', 'Gardening', 'Fashion', 'Photography', 'Board Games', 'Wines', 'Travel', 'Video Games', 'Music', 'Coffee', 'Sports', 'Art', 'Beer', 'Politics', 'Swimming', 'Cooking', 'Outdoors', 'Working out', 'Shopping', 'Cats'
     ]
+    
 
     // let messages = [
         // { from: 'sender', text: "Hi how are you?" },
@@ -37,13 +44,16 @@ export const Chat = ({goNext, goBack}) => {
         (state, newState) => ([...state, newState]),
         []
     )
-
+    
+    
+    
 
     useEffect(() => {
 
         if(!mount){
             setMount(true)
-            
+            appOpenAd.load();
+
             Dialogflow_V2.setConfiguration(
                 dialogFlowConfig.client_email,
                 dialogFlowConfig.private_key,
@@ -86,6 +96,7 @@ export const Chat = ({goNext, goBack}) => {
                   console.log(error);
                 },
               );
+            //   appOpenAd.show();
         }else{
             Alert.alert("Message", "Please enter message")
         }

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, ImageBackground, Image, TouchableOpacity } from 'react-native'
+import { useInterstitialAd, TestIds } from 'react-native-google-mobile-ads'
 import {Slider} from '@miblanchard/react-native-slider';
 import { styles } from './styles'
 import { assets } from '../assets'
@@ -8,6 +9,31 @@ export const Personality = ({goBack, goNext}) => {
 
     
     const [ state, setState ] = useState({})
+    const [ shown, setShown ] = useState(false)
+    const { isLoaded, isClosed, load, show } = useInterstitialAd(TestIds.INTERSTITIAL, {
+        requestNonPersonalizedAdsOnly: true,
+    });
+
+    useEffect(() => {        
+        load();
+    }, [load]);
+
+    useEffect(() => {
+        if (isClosed && !shown) {      
+            setShown(true)
+            goNext()
+        }
+    }, [isClosed, goNext, shown]);
+
+    const handlePress =() => {        
+        if (isLoaded) {
+            show();
+        }else{
+            goNext()
+        }          
+    }
+
+
     return(
         <View  style={styles.bgColor}>
             <ImageBackground source={assets.girl1} resizeMode="cover" style={styles.background}>                
@@ -74,7 +100,7 @@ export const Personality = ({goBack, goNext}) => {
 
                     </View>
 
-                    <TouchableOpacity onPress={goNext} style={styles.button}>
+                    <TouchableOpacity onPress={handlePress} style={styles.button}>
                         <Text style={styles.buttonText}>Next</Text>
                     </TouchableOpacity>
 

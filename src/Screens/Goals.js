@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, Alert, Image, ScrollView, TouchableOpacity } from 'react-native'
+import { useInterstitialAd, TestIds } from 'react-native-google-mobile-ads'
 import { assets } from '../assets'
 import { styles } from './styles'
 
@@ -10,6 +11,31 @@ export const Goals = ({goNext, goBack}) => {
     const goals = [
         'Chat About Random Stuff', 'Feel Less Lonely', 'Have Fun', 'Make Virtual Friend', 'Talk Shame-Free', 'Roleplay', 'Share Emotions', 'Play Chat Games'
     ]
+
+    const [ shown, setShown ] = useState(false)
+    const { isLoaded, isClosed, load, show } = useInterstitialAd(TestIds.INTERSTITIAL, {
+        requestNonPersonalizedAdsOnly: true,
+    });
+
+    useEffect(() => {        
+        load();
+    }, [load]);
+
+    useEffect(() => {
+        if (isClosed && !shown) {      
+            setShown(true)
+            goNext()
+        }
+    }, [isClosed, goNext, shown]);
+
+    const handlePress =() => {        
+        if (isLoaded) {
+            show();
+        }else{
+            goNext()
+        }          
+    }
+
 
     const handleSelection = (val) => {
         let all_selected = [...selected]
@@ -25,7 +51,7 @@ export const Goals = ({goNext, goBack}) => {
         setSelected(all_selected)
     }
 
-    console.log("Selected", selected)
+    
     return(
         <View  style={styles.bgColor}>
             
@@ -47,7 +73,7 @@ export const Goals = ({goNext, goBack}) => {
                         </View>
                     </ScrollView>
                     <View style={{ paddingVertical: 15 }}>
-                    <TouchableOpacity onPress={goNext} style={styles.button}>
+                    <TouchableOpacity onPress={handlePress} style={styles.button}>
                         <Text style={styles.buttonText}>Next</Text>
                     </TouchableOpacity>
                     </View>

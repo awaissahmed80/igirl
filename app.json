@@ -1,4 +1,8 @@
 {
   "name": "VirtualGirl",
-  "displayName": "VirtualGirl"
+  "displayName": "VirtualGirl",
+  "react-native-google-mobile-ads": {
+        "android_app_id": "ca-app-pub-7171633030293206~3559918517",
+        "ios_app_id": "ca-app-pub-7171633030293206~6927769145"
+    }
 }
